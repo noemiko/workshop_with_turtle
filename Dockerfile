@@ -23,7 +23,7 @@ COPY notebooks /root/notebooks
 
 WORKDIR /root
 RUN mkdir "datascience"
-RUN ./copy_notebooks.sh datascience/marek datascience/franek
+RUN ./copy_notebooks.sh datascience/marek datascience/franek datascience/anonymous datascience/ania datascience/yolo datascience/olo datascience/eight
 
 
 WORKDIR /root/datascience
