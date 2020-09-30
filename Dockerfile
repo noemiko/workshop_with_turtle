@@ -16,7 +16,10 @@ RUN apt-get update | sed -e "s/^/$(date +%Y%m%d-%H%M%S) :  /" 2>&1 | tee -a ${LO
   && pip3 install --upgrade pip | sed -e "s/^/$(date +%Y%m%d-%H%M%S) :  /" 2>&1 | tee -a ${LOG_INSTALL_DOCKER}
 
 COPY requirements.txt /requirements.txt
-COPY notebooks /root/datascience/notebooks
+COPY copy_notebooks.sh /copy_notebooks.sh
+COPY notebooks notebooks
+
+RUN ./copy_notebooks.sh marek franek
 
 RUN pip3 install -r requirements.txt
 WORKDIR /root/datascience
