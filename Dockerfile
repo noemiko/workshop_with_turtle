@@ -20,8 +20,8 @@ COPY copy_notebooks.sh /root/copy_notebooks.sh
 COPY notebooks /root/notebooks
 
 WORKDIR /root
-
-RUN ./copy_notebooks.sh marek franek
+RUN mkdir "datascience"
+RUN ./copy_notebooks.sh datascience/marek datascience/franek
 
 RUN pip3 install -r requirements.txt
 WORKDIR /root/datascience
