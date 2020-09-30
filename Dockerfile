@@ -16,6 +16,8 @@ RUN apt-get update | sed -e "s/^/$(date +%Y%m%d-%H%M%S) :  /" 2>&1 | tee -a ${LO
   && pip3 install --upgrade pip | sed -e "s/^/$(date +%Y%m%d-%H%M%S) :  /" 2>&1 | tee -a ${LOG_INSTALL_DOCKER}
 
 COPY requirements.txt /requirements.txt
+RUN pip3 install -r requirements.txt
+
 COPY copy_notebooks.sh /root/copy_notebooks.sh
 COPY notebooks /root/notebooks
 
@@ -23,7 +25,7 @@ WORKDIR /root
 RUN mkdir "datascience"
 RUN ./copy_notebooks.sh datascience/marek datascience/franek
 
-RUN pip3 install -r requirements.txt
+
 WORKDIR /root/datascience
 
 RUN jupyter notebook --generate-config --allow-root
