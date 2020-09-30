@@ -16,8 +16,10 @@ RUN apt-get update | sed -e "s/^/$(date +%Y%m%d-%H%M%S) :  /" 2>&1 | tee -a ${LO
   && pip3 install --upgrade pip | sed -e "s/^/$(date +%Y%m%d-%H%M%S) :  /" 2>&1 | tee -a ${LOG_INSTALL_DOCKER}
 
 COPY requirements.txt /requirements.txt
-COPY copy_notebooks.sh /copy_notebooks.sh
-COPY notebooks notebooks
+COPY copy_notebooks.sh /root/copy_notebooks.sh
+COPY notebooks /root/notebooks
+
+WORKDIR /root
 
 RUN ./copy_notebooks.sh marek franek
 
