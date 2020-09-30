@@ -18,13 +18,8 @@ RUN apt-get update | sed -e "s/^/$(date +%Y%m%d-%H%M%S) :  /" 2>&1 | tee -a ${LO
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r requirements.txt
 
-COPY copy_notebooks.sh /root/copy_notebooks.sh
-COPY notebooks /root/notebooks
-
-WORKDIR /root
-RUN mkdir "datascience"
-RUN ./copy_notebooks.sh datascience/marek datascience/franek datascience/anonymous datascience/ania datascience/yolo datascience/olo datascience/eight
-
+COPY notebooks /root/datascience/notebooks
+COPY datascience /root/datascience
 
 WORKDIR /root/datascience
 
